@@ -10,7 +10,8 @@ var users = require('./routes/users');
 var photos = require('./routes/photos');
 var albums = require('./routes/albums');
 var globals = require('./lib/globals');
-var mysql       = require('mysql');
+var mysql = require('mysql');
+
 var app = express();
 
 // view engine setup
@@ -19,6 +20,7 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,7 +35,7 @@ app.use('/albums', albums);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
-    err.status = 404;
+    err.status = 404;                   
     next(err);
 });
 
@@ -61,14 +63,14 @@ app.use(function(err, req, res, next) {
     });
 });
 
-
 app.set('port', globals.applicationPort);
 
 var server = app.listen(app.get('port'), function() {
-  debug('Express server listening on port ' + server.address().port);
-    var connection  = mysql.createConnection(globals.database);
+    
+    debug('Express server listening on port ' + server.address().port);
+    var connection = mysql.createConnection(globals.database);
     connection.connect(function(err) {
-        if(err){
+        if (err) {
             console.log('error connecting to database:');
         } else {
             console.log('connected to database!');
