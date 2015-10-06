@@ -1,17 +1,26 @@
+// npm modules
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+// what's going on here?
 var debug = require('debug')('photoalbums');
-var routes = require('./routes/index');
+
+// the routes 
+var index = require('./routes/index');
 var users = require('./routes/users');
 var photos = require('./routes/photos');
 var albums = require('./routes/albums');
+
+// global object
 var globals = require('./lib/globals');
+
+// mysql
 var mysql = require('mysql');
 
+// init express
 var app = express();
 
 // view engine setup
@@ -27,7 +36,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+// register the routes
+app.use('/', index);
 app.use('/users', users);
 app.use('/photos', photos);
 app.use('/albums', albums);
@@ -67,6 +77,9 @@ app.set('port', globals.applicationPort);
 
 var server = app.listen(app.get('port'), function() {
     
+    // scope chain
+    console.log(index);
+
     debug('Express server listening on port ' + server.address().port);
     var connection = mysql.createConnection(globals.database);
     connection.connect(function(err) {
