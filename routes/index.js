@@ -10,4 +10,9 @@ router.get('/', function(req, res) {
   	res.render('index', { title: 'Photoalbums' });
 });
 
+router.get('/health', function(req, res) {
+	model.logger('Checking on the health of the API');
+	res.send('API health is good!');
+});
+
 module.exports = router;
