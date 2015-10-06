@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var debug = require('debug')('photoalbums');
 
 // the routes 
-var routes = require('./routes/index');
+var index = require('./routes/index');
 var users = require('./routes/users');
 var photos = require('./routes/photos');
 var albums = require('./routes/albums');
@@ -37,7 +37,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // register the routes
-app.use('/', routes);
+app.use('/', index);
 app.use('/users', users);
 app.use('/photos', photos);
 app.use('/albums', albums);
@@ -77,6 +77,9 @@ app.set('port', globals.applicationPort);
 
 var server = app.listen(app.get('port'), function() {
     
+    // scope chain
+    console.log(index);
+
     debug('Express server listening on port ' + server.address().port);
     var connection = mysql.createConnection(globals.database);
     connection.connect(function(err) {
