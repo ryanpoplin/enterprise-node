@@ -1,17 +1,26 @@
+// npm modules
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+// what's going on here?
 var debug = require('debug')('photoalbums');
+
+// the routes 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var photos = require('./routes/photos');
 var albums = require('./routes/albums');
+
+// global object
 var globals = require('./lib/globals');
+
+// mysql
 var mysql = require('mysql');
 
+// init express
 var app = express();
 
 // view engine setup
@@ -27,6 +36,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// register the routes
 app.use('/', routes);
 app.use('/users', users);
 app.use('/photos', photos);
