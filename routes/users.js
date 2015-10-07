@@ -63,11 +63,7 @@ router.post('/logout', function(req, res) {
 
 /* POST user registration. */
 router.post('/register', function(req, res) {
-	
-	// never use req.param it's messy, just use a req.body to get that json we want in a nice small package...
-	console.log(req.body.username + " is awesome!");
-
-	if (req.param('username') && req.param('password') && req.param('email')) {
+	if (req.body.username && req.body.password && req.body.email) {
 		var email = unescape(req.param('email'));
 		var emailMatch = email.match(/\S+@\S+\.\S+/);
 		if (emailMatch !== null) {
