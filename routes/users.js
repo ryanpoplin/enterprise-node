@@ -62,15 +62,28 @@ router.post('/logout', function(req, res) {
 });
 
 /* POST user registration. */
+
+/***
+*
+* http://localhost:8081/users/register
+*
+* {
+*   "username": "byrdanfox",
+*   "password": "890890Rr",
+*   "email": "mobileupstate@gmail.com"
+* }
+*
+***/
+
 router.post('/register', function(req, res) {
 	if (req.body.username && req.body.password && req.body.email) {
-		var email = unescape(req.param('email'));
+		var email = unescape(req.body.email);
 		var emailMatch = email.match(/\S+@\S+\.\S+/);
 		if (emailMatch !== null) {
 			var params = {
-				username: req.param('username').toLowerCase(),
-				password: req.param('password'),
-				email: req.param('email').toLowerCase()
+				username: req.body.username.toLowerCase(),
+				password: req.body.password,
+				email: req.body.email.toLowerCase()
 			};
 			model.createUser(params, function(err, obj) {
 				if (err) {
