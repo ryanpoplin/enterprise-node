@@ -8,6 +8,7 @@ router.get('/', function(req, res) {
   	if (err) {
   		res.status(500).send({error: 'An unknown server error has occurred!'});
   	} else {
+  		console.log(obj);
   		res.send(obj);
   	}
   })
@@ -75,6 +76,7 @@ router.post('/logout', function(req, res) {
 *
 ***/
 
+// what's the difference between req.body.x & req.param('x')?
 router.post('/register', function(req, res) {
 	if (req.body.username && req.body.password && req.body.email) {
 		var email = unescape(req.body.email);
