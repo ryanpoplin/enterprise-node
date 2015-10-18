@@ -8,6 +8,7 @@ router.get('/', function(req, res) {
   	if (err) {
   		res.status(500).send({error: 'An unknown server error has occurred!'});
   	} else {
+  		console.log(obj);
   		res.send(obj);
   	}
   })
@@ -62,15 +63,29 @@ router.post('/logout', function(req, res) {
 });
 
 /* POST user registration. */
+
+/***
+*
+* http://localhost:8081/users/register
+*
+* {
+*   "username": "byrdanfox",
+*   "password": "890890Rr",
+*   "email": "mobileupstate@gmail.com"
+* }
+*
+***/
+
+// what's the difference between req.body.x & req.param('x')?
 router.post('/register', function(req, res) {
-	if (req.param('username') && req.param('password') && req.param('email')) {
-		var email = unescape(req.param('email'));
+	if (req.body.username && req.body.password && req.body.email) {
+		var email = unescape(req.body.email);
 		var emailMatch = email.match(/\S+@\S+\.\S+/);
 		if (emailMatch !== null) {
 			var params = {
-				username: req.param('username').toLowerCase(),
-				password: req.param('password'),
-				email: req.param('email').toLowerCase()
+				username: req.body.username.toLowerCase(),
+				password: req.body.password,
+				email: req.body.email.toLowerCase()
 			};
 			model.createUser(params, function(err, obj) {
 				if (err) {
