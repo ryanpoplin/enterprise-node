@@ -28,14 +28,30 @@
 // 	unlock: function() {}
 // };
 
-function Accommodation() {};
-var house = new Accommodation();
-var apartment = new Accommodation();
-console.log(house.constructor === Accommodation);
-console.log(apartment.constructor === Accommodation);
-console.log(house instanceof Accommodation);
-console.log(apartment instanceof Accommodation);
-var trickApartment = new apartment.constructor();
-console.log(trickApartment instanceof Accommodation);
-console.log('JavaScript is a cool language that\'s not as cool as Swift right now, but maybe ECMAScript 6 will show it up a little?');
+// premature, but here goes...
+// function OOP() {
+// 	this.aProperty = 'A Propery';
+// 	this.aMethod = function() {
+// 		console.log('A Method');
+// 	}
+// };
+
+// var oop = new OOP();
+// console.log(oop.aProperty);
+// oop.aMethod();
+
+// var anotherOop = new OOP();
+// console.log(anotherOop.aProperty);
+// anotherOop.aMethod();
+
+// function Accommodation() {};
+// var house = new Accommodation();
+// var apartment = new Accommodation();
+// console.log(house.constructor === Accommodation);
+// console.log(apartment.constructor === Accommodation);
+// console.log(house instanceof Accommodation);
+// console.log(apartment instanceof Accommodation);
+// var trickApartment = new apartment.constructor();
+// console.log(trickApartment instanceof Accommodation);
+// console.log('JavaScript is a cool language that\'s not as cool as Swift right now, but maybe ECMAScript 6 will show it up a little?');
 
